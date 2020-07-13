@@ -1,0 +1,24 @@
+{
+  "name": "note-taker",
+  "version": "1.0.0",
+  "description": "Application that can be used to write, save, and delete notes.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/indyminhas/notetaker.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/indyminhas/notetaker/issues"
+  },
+  "homepage": "https://github.com/indyminhas/notetaker#readme"
+}
