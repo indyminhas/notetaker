@@ -1,29 +1,29 @@
-// Require (built in node methods and data from db.json)
-const util = require("util")
-const fs = require("fs")
-const notesData = "./db/db.json"
-
-const readFileAsync = util.promisify(fs.readFile);
+const util = require("util");
+const fs = require("fs");
+const path = require("path");
+const jsond = (path.resolve(__dirname, "./db.json"));
+const readfileAsync = util.promisify(fs.readFile);
 const writeFileAsync = util.promisify(fs.writeFile);
 
-// Singleton class to read and write db.json
-class DB {
+class dbFunction{
     async readNotes(){
         try {
-            const notesRaw = await readFileAsync(notesData, "utf8")
-            return notesRaw?JSON.parse(notesRaw):[]
-        } catch(err){
-            console.log("Somthing wen wrong while READING notes: " + err);
-        }
-    }
-    async writeNotes(notesArr){
-        try {
-          await writeFileAsync(notesData, JSON.stringify(notesArr))
-        } catch(err){
-            console.log("Something went wrong while WRITING notes ", err)
-        }
-    }
-}
+        const notes = await readfileAsync(jsond, "utf8")
+        return notes ? JSON.parse(notes) : [];
 
-// Exporting single instance for server.js
-module.exports = new DB();
+        } catch (err){
+        console.log("Can't read file", err)
+        }
+    }
+
+    async writeNotes(noteArr){
+        try{
+        await writeFileAsync(jsond, JSON.stringify(noteArr), "utf8")
+        } catch(e) {
+        console.log("error: ", e)
+        }
+    }
+ }
+
+ //one class instance needed
+ module.exports = new dbFunction();
